@@ -1,0 +1,55 @@
+@page "/monopoly"
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col">
+      <div class="form-floating">
+        <input type="number" class="form-control" id="moneyToMove" placeholder="Money to be transfered" @bind=transferController.TransferAmount>
+        <label for="moneyToMove">Money to be transfered</label>
+      </div>
+    </div>
+    <div class="col">
+      <button class="btn btn-primary" @onclick="transferController.Transfer" Disabled=@transferController.TransferDisabled>Transfer</button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="@transferController.Status text-white">@transferController.Msg</div>
+  </div>
+  <div class="row">
+    @foreach (var gc in GamerControllers)
+    {
+        <div class="col m-2">
+          <div class="row">
+            <div class="form-floating">
+              <input class="form-control" type="text" id="name@(gc.Gamer.Id)" value=@gc.Gamer.Name readonly>
+              <label for="name@(gc.Gamer.Id)">Gamer</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-floating">
+              <input class="form-control" type="text" id="balance@(gc.Gamer.Id)" value=@gc.Gamer.Currency readonly>
+              <label for="balance@(gc.Gamer.Id)">Balance</label>
+            </div>
+          </div>
+          <div class="row">
+            <input type="checkbox" class="btn-check" name="switch-sender" id="btn-sender@(gc.Gamer.Id)" @bind=gc.IsSender autocomplete="off">
+            <label class="btn btn-outline-danger btn-block" for="btn-sender@(gc.Gamer.Id)">Sender</label>
+          </div>
+          <div class="row">
+            <input type="checkbox" class="btn-check" name="switch-receiver" id="btn-receiver@(gc.Gamer.Id)" @bind=gc.IsReceiver autocomplete="off">
+            <label class="btn btn-outline-success btn-block" for="btn-receiver@(gc.Gamer.Id)">Receiver</label>
+          </div>
+        </div>
+    }
+  </div>
+</div>
+
+@code{
+    //int count = 4;
+
+    //ElementReference ReferenceToInputControl;
+
+    private void bla(){
+      //ReferenceToInputControl.Disabled = true;
+    }
+}
