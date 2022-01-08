@@ -4,7 +4,7 @@
   <div class="row">
     <div class="col">
       <div class="form-floating">
-        <input type="number" class="form-control" id="moneyToMove" placeholder="Money to be transfered" @bind=transferController.TransferAmount>
+        <input type="number" pattern="\d*" class="form-control currency" id="moneyToMove" placeholder="Money to be transfered" @bind=transferController.TransferAmountNullable @bind:event="oninput">
         <label for="moneyToMove">Money to be transfered</label>
       </div>
     </div>
@@ -20,24 +20,33 @@
     {
         <div class="col m-2">
           <div class="row">
-            <div class="form-floating">
+            <div class="form-floating nopadding">
               <input class="form-control" type="text" id="name@(gc.Gamer.Id)" value=@gc.Gamer.Name readonly>
               <label for="name@(gc.Gamer.Id)">Gamer</label>
             </div>
           </div>
           <div class="row">
-            <div class="form-floating">
-              <input class="form-control" type="text" id="balance@(gc.Gamer.Id)" value=@gc.Gamer.Currency readonly>
+            <div class="form-floating nopadding">
+              <input class="form-control currency" type="text" id="balance@(gc.Gamer.Id)" value=@gc.Gamer.Balance readonly>
               <label for="balance@(gc.Gamer.Id)">Balance</label>
             </div>
           </div>
           <div class="row">
-            <input type="checkbox" class="btn-check" name="switch-sender" id="btn-sender@(gc.Gamer.Id)" @bind=gc.IsSender autocomplete="off">
-            <label class="btn btn-outline-danger btn-block" for="btn-sender@(gc.Gamer.Id)">Sender</label>
+            <!--$('#btn-sender@(gc.Gamer.Id)').button('refresh')-->
+            <!--<input type="checkbox" class="btn-check" name="switch-sender" id="btn-sender@(gc.Gamer.Id)" @bind=gc.IsSender autocomplete="off">
+            <label class="btn btn-outline-danger btn-block" for="btn-sender@(gc.Gamer.Id)">Sender</label>-->
+            <div class="form-check form-switch form-switch mx-3">
+              <input type="checkbox" class="form-check-input" name="switch-sender" style="transform: scale(1.8);" role="switch" id="btn-sender@(gc.Gamer.Id)" @bind=gc.IsSender autocomplete="off">
+              <label class="form-check-label mx-3" for="btn-sender@(gc.Gamer.Id)">Sender</label>
+            </div>
           </div>
           <div class="row">
-            <input type="checkbox" class="btn-check" name="switch-receiver" id="btn-receiver@(gc.Gamer.Id)" @bind=gc.IsReceiver autocomplete="off">
-            <label class="btn btn-outline-success btn-block" for="btn-receiver@(gc.Gamer.Id)">Receiver</label>
+            <!--<input type="checkbox" class="btn-check" name="switch-receiver" id="btn-receiver@(gc.Gamer.Id)" @bind=gc.IsReceiver autocomplete="off">
+            <label class="btn btn-outline-success btn-block" for="btn-receiver@(gc.Gamer.Id)">Receiver</label>-->
+            <div class="form-check form-switch form-switch mx-3">
+              <input type="checkbox" class="form-check-input" name="switch-receiver" style="transform: scale(1.8);" role="switch" id="btn-receiver@(gc.Gamer.Id)" @bind=gc.IsReceiver autocomplete="off">
+              <label class="form-check-label mx-3" for="btn-receiver@(gc.Gamer.Id)">Receiver</label>
+            </div>
           </div>
         </div>
     }

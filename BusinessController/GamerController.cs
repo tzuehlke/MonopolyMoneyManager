@@ -30,6 +30,15 @@ namespace MonopolyMoneyManager.BusinessController
             IsReceiver = false;
         }
 
+        public void ResetSender(GamerController gc){
+            if(gc != this)
+                isSender = false;
+        }
+        public void Reset(){
+            isReceiver = false;
+            isSender = false;
+        }
+
         public event Action OnSenderChanged;
 
         public event Action OnReceiverChanged;

@@ -8,19 +8,35 @@ namespace MonopolyMoneyManager.BusinessController
         public bool TransferDisabled { get; set; } = false;
         public string Msg { get; set; } = "";
         public string Status { get; set; } = "bg-info";
-        public int Sum { get { return (receiver.Count == 0 ? TransferAmount : receiver.Count * TransferAmount) ;} }
-        private int transferAmount; 
-        public int TransferAmount {
+        //public int Sum { get { return (receiver.Count == 0 ? TransferAmount : receiver.Count * TransferAmount) ;} }
+        public int Sum {
+            get {
+                int amount = TransferAmountNullable??0;
+                return (receiver.Count == 0 ? amount : receiver.Count * amount) ;}
+            }
+        private int? transferAmount = null; 
+        /*public int TransferAmount {
             get{ return transferAmount;}
             set{
                 transferAmount = value;
                 UpdateGui();
             }
+        }*/
+        public int? TransferAmountNullable
+        {
+            get { return transferAmount;}
+            set {
+                transferAmount = value;
+                UpdateGui();
+            }
         }
+
+        public event Action<GamerController> OnResetSender;
+
+        public event Action OnResetAll;
 
         public TransferController()
         {
-
         }
 
         public void UpdateGui(){
@@ -32,8 +48,13 @@ namespace MonopolyMoneyManager.BusinessController
         List<Gamer> sender = new List<Gamer>();
         public void ChangeSender(GamerController g){
             Console.WriteLine("ChangeSender...");
-            if(g.IsSender) sender.Add(g.Gamer);
-            else sender.Remove(g.Gamer);
+            /*if(g.IsSender){ 
+                sender.Add(g.Gamer);
+            }
+            else sender.Remove(g.Gamer);*/
+            sender.Clear();
+            OnResetSender?.Invoke(g);
+            sender.Add(g.Gamer);
             UpdateGui();
         }
         public void ChangeReceiver(GamerController g){
@@ -59,7 +80,7 @@ namespace MonopolyMoneyManager.BusinessController
             if(sender.Count == 0) msg_source = "Bank ";
             if(IsValid()) Status = "bg-info";
             else Status = "bg-warning";
-            Msg = msg_source + "send " + Sum.ToString("C") + " to " + msg_dest;
+            Msg = msg_source + "send " + Sum.ToString() + " 💰 to " + msg_dest;
         }
 
         private void SetTransferEnabled(){
@@ -71,6 +92,7 @@ namespace MonopolyMoneyManager.BusinessController
             Console.WriteLine("IsValid...");
             if(sender.Count>1) return false;
             if(sender.Count > 0 && sender[0].Balance < Sum) return false;
+            if(TransferAmountNullable is null) return false;
 
             return true;
         }
@@ -85,9 +107,14 @@ namespace MonopolyMoneyManager.BusinessController
             if(sender.Count > 0) sender[0].Balance -= Sum;
             foreach (var r in receiver)
             {
-                r.Balance += TransferAmount;
+                //r.Balance += TransferAmount;
+                r.Balance += TransferAmountNullable??0;
             }
             Status = "bg-success";
+            //TransferAmount = 0;
+            //TransferAmountNullable = null;
+            transferAmount = null;
+            OnResetAll?.Invoke();
         }
 
     }

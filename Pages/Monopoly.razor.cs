@@ -29,6 +29,8 @@ using MonopolyMoneyManager.BusinessObjects;
             {
                 g.OnSenderChanged += () => transferController.ChangeSender(g);
                 g.OnReceiverChanged += ()=> transferController.ChangeReceiver(g);
+                transferController.OnResetSender += (gc) => g.ResetSender(gc);
+                transferController.OnResetAll += () => g.Reset();
             }
             transferController.UpdateGui();
         }
