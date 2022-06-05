@@ -20,10 +20,10 @@ using MonopolyMoneyManager.BusinessObjects;
         IList<GamerController> GamerControllers = new List<GamerController>();
         public void init(){
             GamerControllers.Add(new GamerController(new Gamer(){Name = "Pott", Balance=0}));
-            GamerControllers.Add(new GamerController(new Gamer(){Name = "Gamer 1", Balance=100}));
-            GamerControllers.Add(new GamerController(new Gamer(){Name = "Gamer 2", Balance=100}));
-            GamerControllers.Add(new GamerController(new Gamer(){Name = "Gamer 3", Balance=100}));
-            GamerControllers.Add(new GamerController(new Gamer(){Name = "Gamer 4", Balance=100}));
+            GamerControllers.Add(new GamerController(new Gamer(){Name = "A", Balance=100}));
+            GamerControllers.Add(new GamerController(new Gamer(){Name = "J", Balance=100}));
+            GamerControllers.Add(new GamerController(new Gamer(){Name = "T", Balance=100}));
+            GamerControllers.Add(new GamerController(new Gamer(){Name = "K", Balance=100}));
 
             foreach (var g in GamerControllers)
             {

@@ -31,21 +31,16 @@
               <label for="balance@(gc.Gamer.Id)">Balance</label>
             </div>
           </div>
-          <div class="row">
-            <!--$('#btn-sender@(gc.Gamer.Id)').button('refresh')-->
-            <!--<input type="checkbox" class="btn-check" name="switch-sender" id="btn-sender@(gc.Gamer.Id)" @bind=gc.IsSender autocomplete="off">
-            <label class="btn btn-outline-danger btn-block" for="btn-sender@(gc.Gamer.Id)">Sender</label>-->
+          <div class="row">  
             <div class="form-check form-switch form-switch mx-3">
-              <input type="checkbox" class="form-check-input" name="switch-sender" style="transform: scale(1.8);" role="switch" id="btn-sender@(gc.Gamer.Id)" @bind=gc.IsSender autocomplete="off">
-              <label class="form-check-label mx-3" for="btn-sender@(gc.Gamer.Id)">Sender</label>
+              <input type="checkbox" class="form-check-input" name="switch-sender" style="transform: scale(1.4);" role="switch" id="btn-sender@(gc.Gamer.Id)" @bind=gc.IsSender autocomplete="off">
+              <label class="form-check-label mx-3 text-danger" for="btn-sender@(gc.Gamer.Id)">Sender</label>
             </div>
           </div>
           <div class="row">
-            <!--<input type="checkbox" class="btn-check" name="switch-receiver" id="btn-receiver@(gc.Gamer.Id)" @bind=gc.IsReceiver autocomplete="off">
-            <label class="btn btn-outline-success btn-block" for="btn-receiver@(gc.Gamer.Id)">Receiver</label>-->
-            <div class="form-check form-switch form-switch mx-3">
-              <input type="checkbox" class="form-check-input" name="switch-receiver" style="transform: scale(1.8);" role="switch" id="btn-receiver@(gc.Gamer.Id)" @bind=gc.IsReceiver autocomplete="off">
-              <label class="form-check-label mx-3" for="btn-receiver@(gc.Gamer.Id)">Receiver</label>
+              <div class="form-check form-switch form-switch mx-3">
+              <input type="checkbox" class="form-check-input" name="switch-receiver" style="transform: scale(1.4);" role="switch" id="btn-receiver@(gc.Gamer.Id)" @bind=gc.IsReceiver autocomplete="off">
+              <label class="form-check-label mx-3 text-success" for="btn-receiver@(gc.Gamer.Id)">Receiver</label>
             </div>
           </div>
         </div>

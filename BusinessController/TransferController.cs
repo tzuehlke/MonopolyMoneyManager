@@ -47,21 +47,33 @@ namespace MonopolyMoneyManager.BusinessController
         List<Gamer> receiver = new List<Gamer>();
         List<Gamer> sender = new List<Gamer>();
         public void ChangeSender(GamerController g){
-            Console.WriteLine("ChangeSender...");
+            //Console.WriteLine("ChangeSender...");
             /*if(g.IsSender){ 
                 sender.Add(g.Gamer);
             }
             else sender.Remove(g.Gamer);*/
             sender.Clear();
             OnResetSender?.Invoke(g);
-            sender.Add(g.Gamer);
+            if(g.IsSender) sender.Add(g.Gamer);
             UpdateGui();
+            System.Console.Write("New Sender: ");
+            foreach(var s in sender){
+                System.Console.Write(s.Name);
+            }
+            System.Console.WriteLine();
         }
         public void ChangeReceiver(GamerController g){
-            Console.WriteLine("ChangeReceiver...");
+            //Console.WriteLine("ChangeReceiver...");
+            //System.Console.WriteLine("Changed: " + g.Gamer.Name + " is now " + g.IsReceiver);
             if(g.IsReceiver) receiver.Add(g.Gamer);
             else receiver.Remove(g.Gamer);
+            
             UpdateGui();
+            System.Console.Write("New Receiver: ");
+            foreach(var r in receiver){
+                System.Console.Write(r.Name);
+            }
+            System.Console.WriteLine();
         }
 
         private void GenerateMsg(){

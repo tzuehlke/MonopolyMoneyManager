@@ -37,6 +37,8 @@ namespace MonopolyMoneyManager.BusinessController
         public void Reset(){
             isReceiver = false;
             isSender = false;
+            OnReceiverChanged?.Invoke();
+            OnSenderChanged?.Invoke();
         }
 
         public event Action OnSenderChanged;
