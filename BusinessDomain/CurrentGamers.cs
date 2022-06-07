@@ -1,4 +1,4 @@
-namespace MonopolyMoneyManager.Services
+namespace MonopolyMoneyManager.BusinessObjects
 {
     using System;
     using System.Collections.Generic;
