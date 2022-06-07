@@ -43,9 +43,15 @@ using Microsoft.JSInterop;
         {
             string state = await JSRuntime.InvokeAsync<string>("localStorage.getItem", localStateIdentifier);
             currentGamers.SetStateFromJSON(state);
-            //foreach(var gamer in gamers){
-            //    currentGamers.GamerList.Add(gamer);
-            //}
+        }
+        public async Task SaveStateCookie(){
+            string state = currentGamers.GetStateAsJSON();
+            await JSRuntime.InvokeAsync<string>("setCookie", "state", state, 365);
+        }
+        public async Task LoadStateCookie()
+        {
+            string state = await JSRuntime.InvokeAsync<string>("getCookie", "state");
+            currentGamers.SetStateFromJSON(state);
         }
     }
 }
