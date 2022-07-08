@@ -1,35 +1,62 @@
 @page "/config"
 @inject BusinessObjects.CurrentGamers currentGamers
 @inject IJSRuntime JSRuntime
+@inject NavigationManager NavigationManager
 
 <h1>Config/Intialize</h1>
 
 <p>Current count: @currentCount</p>
-  <div class="row">
-    <div class="col">
-        <div class="form-floating">
-            <input type="text" class="form-control" id="playerName" @bind=playerName>
-            <label for="playerName">Name of Player</label>
-        </div>
-        <div class="form-floating">
-            <input type="number" class="form-control" id="playerBalance" @bind=playerBalance>
-            <label for="playerBalance">Money of Player</label>
-        </div>
-        <button class="btn btn-primary" @onclick="AddPlayer">Add Player</button>
-        <button class="btn btn-primary" @onclick="SaveStateLocal">Save as LocalStorage</button>
-        <button class="btn btn-primary" @onclick="LoadStateLocal">Load from LocalStorage</button>
-        <button class="btn btn-primary" @onclick="SaveStateCookie">Save as Cookie</button>
-        <button class="btn btn-primary" @onclick="LoadStateCookie">Load from Cookie</button>
+<div class="row">
+  <div class="col">
+      <div class="form-floating">
+          <input type="text" class="form-control" id="playerName" @bind=playerName>
+          <label for="playerName">Name of Player</label>
+      </div>
+      <div class="form-floating">
+          <input type="number" class="form-control" id="playerBalance" @bind=playerBalance>
+          <label for="playerBalance">Money of Player</label>
+      </div>
+      <button class="btn btn-primary" @onclick="AddPlayer">Add Player</button>
+  </div>
+</div>
+<div class="row">
+  <div class="col">
+  <ul class="list-group">
+  @foreach (var g in currentGamers.GamerList)
+  {
+      <li class="list-group-item d-flex justify-content-between align-items-center">@g.Name with @g.Balance💰
+          <button type="button" class="btn btn-labeled btn-danger" @onclick="() => currentGamers.GamerList.Remove(g)">
+          <i class="oi oi-trash"></i></button>
+      </li>
+  }
+  </ul>
+  </div>
+</div>
+<div class="row">
+  <div class="col">
+    <button class="btn btn-primary" @onclick="SaveStateLocal">⤵️ Save as LocalStorage</button>
+  </div>
+  <div class="col">
+    <button class="btn btn-primary" @onclick="LoadStateLocal">⤴️ Load from LocalStorage</button>
+  </div>  
+</div>
+<div class="row">
+  <div class="col">
+    <button class="btn btn-primary" @onclick="SaveStateCookie">⤵️ Save as Cookie</button>
+  </div>
+  <div class="col">
+    <button class="btn btn-primary" @onclick="LoadStateCookie">⤴️ Load from Cookie</button>
+  </div>  
+</div>
+<div class="row">
+  <div class="col">
+    <div class="form-floating">
+      <!-- <input type="text" class="form-control" id="link" @bind=link> -->
+      <!--<label for="link">Direct Link</label>-->
+      <a href="@link" class="link-primary">@link</a>
     </div>
   </div>
-  <div class="row">
-    <ul class="list-group">
-    @foreach (var g in currentGamers.GamerList)
-    {
-        <li class="list-group-item d-flex justify-content-between align-items-center">@g.Name with @g.Balance💰
-            <button type="button" class="btn btn-labeled btn-danger" @onclick="() => currentGamers.GamerList.Remove(g)">
-            <i class="oi oi-trash"></i></button>
-        </li>
-    }
-    </ul>
+  <div class="col">
+    <button class="btn btn-primary" @onclick="GenLink">Generate Link</button>
   </div>
+</div>

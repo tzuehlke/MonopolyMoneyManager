@@ -16,6 +16,7 @@ using Microsoft.JSInterop;
         public int playerBalance {get;set;}
         public int currentCount {get;set;}
         private const string localStateIdentifier = "MonopolyMoneyManager";
+        public string link {get;set;}
         protected override async Task OnInitializedAsync()
         {
             init();
@@ -53,5 +54,28 @@ using Microsoft.JSInterop;
             string state = await JSRuntime.InvokeAsync<string>("getCookie", "state");
             currentGamers.SetStateFromJSON(state);
         }
+        public void GenLink(){
+            var cu = new UriBuilder(NavigationManager.Uri);
+            string newuri = cu.Scheme+"://"+cu.Host+":"+cu.Port+"/monopoly/"+currentGamers.GetStateAsJSON();
+            link = newuri;
+        }
+
+            string AddQueryParm(string parmName, string parmValue)
+    {
+        var uriBuilder = new UriBuilder(NavigationManager.Uri);
+        var q = System.Web.HttpUtility.ParseQueryString(uriBuilder.Query);
+        q[parmName] = parmValue;
+        uriBuilder.Query = q.ToString();
+        var newUrl = uriBuilder.ToString();
+        return newUrl;
+    }
+
+    // Blazor: get query parm from the URL
+    string GetQueryParm(string parmName)
+    {
+        var uriBuilder = new UriBuilder(NavigationManager.Uri);
+        var q = System.Web.HttpUtility.ParseQueryString(uriBuilder.Query);
+        return q[parmName] ?? "";
+    }
     }
 }

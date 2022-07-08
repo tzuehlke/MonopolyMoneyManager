@@ -8,6 +8,7 @@ namespace MonopolyMoneyManager.BusinessObjects
         public int Balance { get; set; }
         [JsonIgnore]
         public string Currency { get { return Balance.ToString("C");} }
+        [JsonIgnore]
         public string Id { get; private set; }
         public Gamer()
         {

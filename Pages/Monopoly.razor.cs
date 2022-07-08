@@ -14,6 +14,10 @@ using Microsoft.JSInterop;
     {
         protected override async Task OnInitializedAsync()
         {
+            Console.WriteLine("config is: "+config??"no config");
+            if(!String.IsNullOrEmpty(config)){
+                currentGamers.SetStateFromJSON(config);
+            }
             init();
 
         }
