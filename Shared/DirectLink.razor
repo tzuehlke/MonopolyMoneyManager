@@ -2,15 +2,14 @@
 @inject BusinessObjects.CurrentGamers currentGamers
 
 <div class="container-fluid">
-<div class="container">
-    <p class="font-weight-normal">@Infotext</p>
-</div>
-<div class="container-fluid">
-  <a href="@Link" class="link-primary">@Linktext</a>
-</div>
-<div class="container">
-  <button class="btn btn-primary @ButtonVisibility" @onclick="@GenerateLink">Generate Link</button>
-</div>
+  <div class="row">
+    <div class="col-md-auto">
+      @Infotext <a href="@Link" class="link-primary">@Linktext</a>
+    </div>
+    <div class="col-sm-2">
+      <button class="btn btn-primary @ButtonVisibility" @onclick="@GenerateLink">Generate Link</button>
+    </div>
+  </div>
 </div>
 
 @code {

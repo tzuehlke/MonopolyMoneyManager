@@ -29,12 +29,7 @@ using Microsoft.JSInterop;
             foreach(var gamer in currentGamers.GamerList){
                 GamerControllers.Add(new GamerController(gamer));
             }
-            //GamerControllers.Add(new GamerController());
-            //GamerControllers.Add(new GamerController());
-            //GamerControllers.Add(new GamerController();
-            //GamerControllers.Add(new GamerController(new Gamer(){Name = "T", Balance=100}));
-            //GamerControllers.Add(new GamerController(new Gamer(){Name = "K", Balance=100}));
-            //StateController<IList<GamerController>> stateController = new StateController<IList<GamerController>>(GamerControllers);
+
             foreach (var g in GamerControllers)
             {
                 g.OnSenderChanged += () => transferController.ChangeSender(g);

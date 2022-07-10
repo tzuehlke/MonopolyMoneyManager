@@ -1,8 +1,15 @@
 ﻿@page "/"
+@using Markdig;
+@inject HttpClient Http;
 
+<div class="markdown">
+    @((MarkupString) Markdown.ToHtml(Documentation))
+</div>
 
-<h1>Hello, world!</h1>
-
-Welcome to your new app.
-
-<SurveyPrompt Title="How is Blazor working for you?" />
+@code{
+    private string Documentation {get;set;} = "*Loading...*";
+    protected override async Task OnInitializedAsync()
+    {
+        Documentation = await Http.GetStringAsync("https://raw.githubusercontent.com/tzuehlke/MonopolyMoneyManager/main/README.md");
+    }
+}
