@@ -13,8 +13,8 @@ dotnet watch run
 ```
 
 # Plan for next releases
-* History of transfers
-* Save Status as cookie
-* Create configuration page for setting players and amounts
-* Generate link with configuration/status for browser favorites
-* make some automatic tests
+- [ ] History of transfers
+- [x] Save Status as cookie
+- [x] Create configuration page for setting players and amounts
+- [x] Generate link with configuration/status for browser favorites
+- [ ] make some automatic tests
