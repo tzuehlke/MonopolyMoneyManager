@@ -50,17 +50,12 @@
     }
   </div>
 </div>
+<div>
+  <DirectLink @ref="directLink" ShowButton=false Infotext="Direct Link:" />
+</div>
 
 @code{
     [Parameter]
     public string config { get; set; }
-    //int count = 4;
-
-    //ElementReference ReferenceToInputControl;
-
-    private void bla(){
-      //ReferenceToInputControl.Disabled = true;
-    }
-
-
+    private DirectLink directLink;
 }

@@ -12,6 +12,7 @@ using Microsoft.JSInterop;
 
     public partial class Monopoly
     {
+        
         protected override async Task OnInitializedAsync()
         {
             Console.WriteLine("config is: "+config??"no config");
@@ -42,6 +43,7 @@ using Microsoft.JSInterop;
                 //transferController.OnResetAll += () => stateController.SaveStateLocal();
                 transferController.OnResetAll += () => g.Reset();
             }
+            transferController.OnResetAll += () => directLink.GenerateLink();
             transferController.UpdateGui();
         }
 

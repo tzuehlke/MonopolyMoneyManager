@@ -1,7 +1,6 @@
 @page "/config"
 @inject BusinessObjects.CurrentGamers currentGamers
 @inject IJSRuntime JSRuntime
-@inject NavigationManager NavigationManager
 
 <h1>Config/Intialize</h1>
 
@@ -47,16 +46,4 @@
   <div class="col">
     <button class="btn btn-primary" @onclick="LoadStateCookie">⤴️ Load from Cookie</button>
   </div>  
-</div>
-<div class="row">
-  <div class="col">
-    <div class="form-floating">
-      <!-- <input type="text" class="form-control" id="link" @bind=link> -->
-      <!--<label for="link">Direct Link</label>-->
-      <a href="@link" class="link-primary">@link</a>
-    </div>
-  </div>
-  <div class="col">
-    <button class="btn btn-primary" @onclick="GenLink">Generate Link</button>
-  </div>
 </div>

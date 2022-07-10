@@ -7,7 +7,10 @@
 ...
 
 # Build, Deploy
-...
+```
+dotnet dev-certs https --trust
+dotnet watch run
+```
 
 # Plan for next releases
 * History of transfers

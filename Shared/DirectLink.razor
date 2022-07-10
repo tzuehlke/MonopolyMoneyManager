@@ -1,0 +1,40 @@
+@inject NavigationManager NavigationManager
+@inject BusinessObjects.CurrentGamers currentGamers
+
+<div class="container-fluid">
+<div class="container">
+    <p class="font-weight-normal">@Infotext</p>
+</div>
+<div class="container-fluid">
+  <a href="@Link" class="link-primary">@Linktext</a>
+</div>
+<div class="container">
+  <button class="btn btn-primary @ButtonVisibility" @onclick="@GenerateLink">Generate Link</button>
+</div>
+</div>
+
+@code {
+    [Parameter]
+    public string Infotext { get; set; } = "";
+    [Parameter]
+    public bool ShowButton { get; set; } = false;
+    public string ButtonVisibility {
+        get {
+            return ShowButton?"visible":"invisible";
+        }
+    }
+            public string Link {get;set;}
+        public string Linktext {get;set;}
+        /*protected override async Task OnInitializedAsync()
+        {
+            
+        }*/
+        public void GenerateLink(){
+            Console.WriteLine("Generating Direct Link...");
+            var cu = new UriBuilder(NavigationManager.Uri);
+            string newuri = cu.Scheme+"://"+cu.Host+":"+cu.Port+"/monopoly/"+currentGamers.GetStateAsJSON();
+            Link = newuri;
+            Linktext = "MMM "+DateTime.Now.ToShortDateString()+" "+DateTime.Now.ToLongTimeString();
+            StateHasChanged();
+        }
+}
