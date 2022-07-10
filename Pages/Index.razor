@@ -7,7 +7,7 @@
 </div>
 
 @code{
-    private string Documentation {get;set;} = "*Loading...*";
+    private string Documentation {get;set;} = "*Loading Readme from GitHub ...*";
     protected override async Task OnInitializedAsync()
     {
         Documentation = await Http.GetStringAsync("https://raw.githubusercontent.com/tzuehlke/MonopolyMoneyManager/main/README.md");

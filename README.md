@@ -10,6 +10,7 @@
 ```
 dotnet dev-certs https --trust
 dotnet watch run
+dotnet publish -c Release
 ```
 
 # Plan for next releases
